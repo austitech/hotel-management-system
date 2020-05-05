@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    {% block head %}
+        <title>{% block title %}{% endblock %} - base</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% endblock %}
+    </head>
+    <body>
+    {% block body %}
+        <div class="container-fluid">
+            <div class="card text-light bg-dark">
+                <div class="card-body">
+                    {% block heading %}
+                    <div class="text-center">
+                        <h1 class="card-title">HOTEL MANAGEMENT SYSTEM</h1>
+                        <h5 class="card-subtitle">Tourism and Hospitality</h5>
+                    </div>
+                    {% endblock %}
+                </div>
+                <div class="card-body">
+                    {% block nav %}
+                    <nav class="nav justify-content-center nav-pills nav-fill">
+                        <a href="{{ url_for('hotel.home') }}" class="card-link nav-item nav-link">HOME</a>
+                        <a href="#" class="card-link nav-item nav-link">SERVICE</a>
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('auth.register') }}" class="card-link nav-item nav-link">SIGN-UP</a>
+                        {% endif %}
+                        <a href="#" class="card-link nav-item nav-link">CONTACT</a>
+                        <a href="#" class="card-link nav-item nav-link">ABOUT</a>
+                    </nav>
+                    {% endblock %}
+                </div>
+                <div class="card text-center bg-light text-dark">
+                    <div class="card-header">
+                        {% block header %}
+                        <ul class="nav nav-tabs card-header-tabs justify-content-center">
+                            {% if not current_user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('hotel.home') }}">Sign In</a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('room.list_room') }}">Rooms</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('guest.checkin') }}">Check In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('guest.list_guest') }}">Guest List</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('room.deposit') }}">Deposit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Check Out</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        {% endblock %}
+                    </div>
+                    <div class="card-body text-center">
+                        {% block message %}
+                        <ul class="message">
+                            {% for message in get_flashed_messages() %}
+                                {% if message %}
+                                <li>{{ message }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% endblock %}
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <p class="card-link text-center">
+                        &copy; Copywrite 2020 <a href="" class="card-link">Hotels ltd</a> All rights reserved
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    </body>
+</html>
+

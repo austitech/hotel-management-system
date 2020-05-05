@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}checkin{% endblock %}
+{% block content %}
+
+<h1 class="card-title">REGISTER GUEST</h1>
+<hr>
+<form method="POST" action="{{ url_for('guest.checkin') }}">
+    {{ form.csrf_token }}
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.title(class="form-control", placeholder="Title") }}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.firstname(class="form-control", placeholder="FirstName") }}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.lastname(class="form-control", placeholder="LastName") }}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.middlename(class="form-control", placeholder="MiddleName") }}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.profession(class="form-control", placeholder="Profession") }}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.state(class="form-control", placeholder="State") }}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.room(class="form-control", placeholder="Room") }}</div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <button type="submit" class="btn btn-outline-light col-md-4">Submit</button>
+    </div>
+</form>
+{% endblock %}

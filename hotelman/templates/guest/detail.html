@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Guest List{% endblock %}
+{% block content %}
+    <div class="card text-center">
+        <div class="card-header">GUEST DETAIL</div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered table-dark">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ROOM</th>
+                        <th>TITLE</th>
+                        <th>FIRSTNAME</th>
+                        <th>LASTNAME</th>
+                        <th>MIDDLENAME</th>
+                        <th>PROFESSION</th>
+                        <th>STATE</th>
+                        <th>DEPOSIT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ guest.room }}</td>
+                        <td>{{ guest.title }}</td>
+                        <td>{{ guest.firstname }}</td>
+                        <td>{{ guest.lastname }}</td>
+                        <td>{{ guest.middlename }}</td>
+                        <td>{{ guest.profession }}</td>
+                        <td>{{ guest.state }}</td>
+                        <td>{{ guest.room.account.total_dep }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

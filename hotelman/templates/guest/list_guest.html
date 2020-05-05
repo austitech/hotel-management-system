@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Guest List{% endblock %}
+{% block content %}
+    <div class="card text-center">
+        <div class="card-header">GUEST LIST</div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered table-dark">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ROOM</th>
+                        <th>TITLE</th>
+                        <th>FIRSTNAME</th>
+                        <th>LASTNAME</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for guest in guests %}
+                        <tr>
+                            <td><a href="{{ url_for('guest.detail', id=guest.id) }}">
+                            {{ guest.room }}</td></a>
+                            <td>{{ guest.title }}</td>
+                            <td>{{ guest.firstname }}</td>
+                            <td>{{ guest.lastname }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

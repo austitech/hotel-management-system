@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}room{% endblock %}
+{% block content %}
+    <div class="card text-center bg-light text-dark">
+        <div class="card-header">ROOM LIST</div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered table-dark">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Room</th>
+                        <th>Occupied</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for room in rooms %}
+                    <tr>
+                        <td>Room {{ room.number }}</td>
+                        <td>{% if room.occupied %}Yes{% else %}No{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <ul class="nav nav-tabs card-header-tabs justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('room.add_room') }}">Add Room</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Update Room</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Delete Room</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Clean Room</a>
+                </li>
+            </ul>
+        </div>
+</div>
+{% endblock %}
